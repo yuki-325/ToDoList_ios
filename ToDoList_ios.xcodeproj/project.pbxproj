@@ -19,6 +19,7 @@
 		4F4DB1A725C18C6F00C6ECD3 /* ToDoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F4DB1A525C18C6F00C6ECD3 /* ToDoCell.swift */; };
 		4F4DB1A825C18C6F00C6ECD3 /* ToDoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4F4DB1A625C18C6F00C6ECD3 /* ToDoCell.xib */; };
 		4FDDEE9825C684FB00CBBD57 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FDDEE9725C684FB00CBBD57 /* Constants.swift */; };
+		4FDDEF2925F7934D00CBBD57 /* AddPlanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FDDEF2825F7934D00CBBD57 /* AddPlanViewController.swift */; };
 		55C282957D430D53AD3C2793 /* Pods_ToDoList_iosTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 660BC0F825860B245E45E8C7 /* Pods_ToDoList_iosTests.framework */; };
 		F79B29473925CDFF04440344 /* Pods_ToDoList_ios_ToDoList_iosUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA0B6469E6CD8DB2F177027F /* Pods_ToDoList_ios_ToDoList_iosUITests.framework */; };
 /* End PBXBuildFile section */
@@ -59,6 +60,7 @@
 		4F4DB1A525C18C6F00C6ECD3 /* ToDoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoCell.swift; sourceTree = "<group>"; };
 		4F4DB1A625C18C6F00C6ECD3 /* ToDoCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ToDoCell.xib; sourceTree = "<group>"; };
 		4FDDEE9725C684FB00CBBD57 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		4FDDEF2825F7934D00CBBD57 /* AddPlanViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPlanViewController.swift; sourceTree = "<group>"; };
 		660BC0F825860B245E45E8C7 /* Pods_ToDoList_iosTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ToDoList_iosTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		97EF8A0FDB8A562C3E2F78DF /* Pods-ToDoList_iosTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ToDoList_iosTests.release.xcconfig"; path = "Target Support Files/Pods-ToDoList_iosTests/Pods-ToDoList_iosTests.release.xcconfig"; sourceTree = "<group>"; };
 		C1F36EB92F5121BF6DA547DA /* Pods-ToDoList_ios-ToDoList_iosUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ToDoList_ios-ToDoList_iosUITests.release.xcconfig"; path = "Target Support Files/Pods-ToDoList_ios-ToDoList_iosUITests/Pods-ToDoList_ios-ToDoList_iosUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -126,6 +128,7 @@
 				4F4DB16725C13DF200C6ECD3 /* SceneDelegate.swift */,
 				4F4DB16925C13DF200C6ECD3 /* HomeViewController.swift */,
 				4F4DB16B25C13DF200C6ECD3 /* Main.storyboard */,
+				4FDDEF2825F7934D00CBBD57 /* AddPlanViewController.swift */,
 				4F4DB1A525C18C6F00C6ECD3 /* ToDoCell.swift */,
 				4F4DB1A625C18C6F00C6ECD3 /* ToDoCell.xib */,
 				4F4DB16E25C13DF900C6ECD3 /* Assets.xcassets */,
@@ -421,6 +424,7 @@
 				4F4DB1A725C18C6F00C6ECD3 /* ToDoCell.swift in Sources */,
 				4F4DB16625C13DF200C6ECD3 /* AppDelegate.swift in Sources */,
 				4F4DB16825C13DF200C6ECD3 /* SceneDelegate.swift in Sources */,
+				4FDDEF2925F7934D00CBBD57 /* AddPlanViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

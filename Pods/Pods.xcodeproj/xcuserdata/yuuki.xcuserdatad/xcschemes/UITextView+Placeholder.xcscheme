@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "468F85163B361F85512454772CED274B"
-               BuildableName = "MaterialIcons_ic_color_lens.bundle"
-               BlueprintName = "MaterialComponents-MaterialIcons_ic_color_lens"
+               BlueprintIdentifier = "94DBE1F02563D90F416A7DB9558489B2"
+               BuildableName = "UITextView_Placeholder.framework"
+               BlueprintName = "UITextView+Placeholder"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>

@@ -14,5 +14,6 @@ struct C {
     
     struct Colors {
         static let dark = "Dark"
+        static let gray = "gray"
     }
 }

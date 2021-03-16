@@ -13,7 +13,6 @@ class ToDoCell: UITableViewCell {
     @IBOutlet weak var whyLabel: UILabel!
     @IBOutlet weak var whenLabel: UILabel!
     
-    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

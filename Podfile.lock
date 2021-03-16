@@ -639,9 +639,11 @@ PODS:
   - MotionAnimator (2.8.1):
     - MotionInterchange (~> 1.6)
   - MotionInterchange (1.6.0)
+  - "UITextView+Placeholder (1.4.0)"
 
 DEPENDENCIES:
   - MaterialComponents
+  - "UITextView+Placeholder"
 
 SPEC REPOS:
   trunk:
@@ -650,6 +652,7 @@ SPEC REPOS:
     - MDFTextAccessibility
     - MotionAnimator
     - MotionInterchange
+    - "UITextView+Placeholder"
 
 SPEC CHECKSUMS:
   MaterialComponents: a7206e4d3491b63c7cedc8d80032cbc0178a9497
@@ -657,7 +660,8 @@ SPEC CHECKSUMS:
   MDFTextAccessibility: 85c09a1bd9c321f494348e632a25063bcda35a53
   MotionAnimator: ee16aa30567c5bae0fb2750c132915829cfaaf8a
   MotionInterchange: ead0e3ae1f3a5fb539e289debbc7ae036160a10d
+  "UITextView+Placeholder": d7b0c400921f66523f3a85d74f774512e14f6502
 
-PODFILE CHECKSUM: a2288eda3893993731cdd6c109ecdba3a20a97fd
+PODFILE CHECKSUM: 96cc020e2d26b10925aec12f99084f91297fbf6d
 
 COCOAPODS: 1.9.1

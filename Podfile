@@ -10,6 +10,7 @@ target 'ToDoList_ios' do
   
   # Pods for ToDoList_ios
   pod 'MaterialComponents'
+  pod 'UITextView+Placeholder'
   
   target 'ToDoList_iosTests' do
     inherit! :search_paths
