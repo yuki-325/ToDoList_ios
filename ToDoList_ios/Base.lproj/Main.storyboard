@@ -4,6 +4,7 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Image references" minToolsVersion="12.0"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -103,8 +104,8 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H3x-rT-Mn9" customClass="MDCFloatingButton">
-                                <rect key="frame" x="165" y="607" width="60" height="60"/>
-                                <color key="backgroundColor" red="0.37055522200000002" green="0.37056469920000001" blue="0.37055957319999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <rect key="frame" x="165" y="501" width="60" height="60"/>
+                                <color key="backgroundColor" name="dark"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="60" id="2ja-FC-VtA"/>
                                     <constraint firstAttribute="height" constant="60" id="Cue-pz-ehb"/>
@@ -114,6 +115,9 @@
                                 <state key="normal">
                                     <imageReference key="image" image="plus" catalog="system" symbolScale="large"/>
                                 </state>
+                                <connections>
+                                    <action selector="addPlanBtnPressed:" destination="Jh5-rD-Jwp" eventType="touchUpInside" id="ctJ-MP-I4O"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TVa-dA-YlS">
                                 <rect key="frame" x="20" y="21" width="30" height="28.666666666666671"/>
@@ -135,40 +139,41 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="17" translatesAutoresizingMaskIntoConstraints="NO" id="Eri-qq-YSZ">
-                                <rect key="frame" x="20" y="161" width="350" height="346"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Eri-qq-YSZ">
+                                <rect key="frame" x="20" y="161" width="350" height="320"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2mc-XY-Gzc">
-                                        <rect key="frame" x="0.0" y="0.0" width="350" height="83"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="350" height="60"/>
                                         <subviews>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="d7l-PE-JhY">
-                                                <rect key="frame" x="15" y="8" width="320" height="67"/>
+                                                <rect key="frame" x="15" y="8" width="320" height="44"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
                                         </subviews>
-                                        <color key="backgroundColor" red="0.37055522200000002" green="0.37056469920000001" blue="0.37055957319999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" name="dark"/>
                                         <constraints>
                                             <constraint firstItem="d7l-PE-JhY" firstAttribute="top" secondItem="2mc-XY-Gzc" secondAttribute="top" constant="8" id="3b4-0b-tg1"/>
                                             <constraint firstItem="d7l-PE-JhY" firstAttribute="leading" secondItem="2mc-XY-Gzc" secondAttribute="leading" constant="15" id="HQh-1I-ghB"/>
                                             <constraint firstAttribute="trailing" secondItem="d7l-PE-JhY" secondAttribute="trailing" constant="15" id="dLf-KN-dKI"/>
+                                            <constraint firstAttribute="height" constant="60" id="fkc-a0-5mb"/>
                                             <constraint firstAttribute="bottom" secondItem="d7l-PE-JhY" secondAttribute="bottom" constant="8" id="uTe-ui-qur"/>
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="e1S-uB-rya">
-                                        <rect key="frame" x="0.0" y="100" width="350" height="173"/>
+                                        <rect key="frame" x="0.0" y="70.000000000000014" width="350" height="204.33333333333337"/>
                                         <subviews>
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="BHp-Zj-rPn">
-                                                <rect key="frame" x="15" y="8" width="320" height="157"/>
+                                                <rect key="frame" x="15" y="8" width="320" height="188.33333333333334"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <color key="textColor" red="0.92143100499999997" green="0.92145264149999995" blue="0.92144101860000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                             </textView>
                                         </subviews>
-                                        <color key="backgroundColor" red="0.37055522200000002" green="0.37056469920000001" blue="0.37055957319999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" name="dark"/>
                                         <constraints>
                                             <constraint firstItem="BHp-Zj-rPn" firstAttribute="leading" secondItem="e1S-uB-rya" secondAttribute="leading" constant="15" id="Cnp-YW-B3l"/>
                                             <constraint firstAttribute="bottom" secondItem="BHp-Zj-rPn" secondAttribute="bottom" constant="8" id="cYG-Cc-9BP"/>
@@ -177,17 +182,17 @@
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ppl-Oq-VnT">
-                                        <rect key="frame" x="0.0" y="290" width="350" height="56"/>
+                                        <rect key="frame" x="0.0" y="284.33333333333331" width="350" height="35.666666666666686"/>
                                         <subviews>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="YLT-xD-GlZ">
-                                                <rect key="frame" x="15" y="8" width="320" height="40"/>
+                                                <rect key="frame" x="15" y="8.0000000000000018" width="320" height="19.666666666666671"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <color key="textColor" red="0.83741801979999997" green="0.83743780850000005" blue="0.83742713930000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
                                         </subviews>
-                                        <color key="backgroundColor" red="0.37055522200000002" green="0.37056469920000001" blue="0.37055957319999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" name="dark"/>
                                         <constraints>
                                             <constraint firstAttribute="bottom" secondItem="YLT-xD-GlZ" secondAttribute="bottom" constant="8" id="KOm-vA-Wmj"/>
                                             <constraint firstItem="YLT-xD-GlZ" firstAttribute="leading" secondItem="ppl-Oq-VnT" secondAttribute="leading" constant="15" id="WSL-Og-fdI"/>
@@ -197,9 +202,7 @@
                                     </view>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="ppl-Oq-VnT" firstAttribute="top" secondItem="Eri-qq-YSZ" secondAttribute="top" constant="290" id="06Y-Gk-4zm"/>
-                                    <constraint firstItem="e1S-uB-rya" firstAttribute="top" secondItem="Eri-qq-YSZ" secondAttribute="top" constant="100" id="GdT-BV-hdd"/>
-                                    <constraint firstAttribute="height" constant="346" id="WKX-FI-LYT"/>
+                                    <constraint firstAttribute="height" constant="320" id="WKX-FI-LYT"/>
                                 </constraints>
                             </stackView>
                         </subviews>
@@ -211,13 +214,14 @@
                             <constraint firstItem="H3x-rT-Mn9" firstAttribute="centerX" secondItem="kNF-Ie-ATx" secondAttribute="centerX" id="76T-fy-pzk"/>
                             <constraint firstItem="j17-8G-txe" firstAttribute="centerX" secondItem="kNF-Ie-ATx" secondAttribute="centerX" id="B3U-gg-s7A"/>
                             <constraint firstItem="TVa-dA-YlS" firstAttribute="top" secondItem="c7m-Lp-0G9" secondAttribute="top" constant="20" id="JB9-YV-KAW"/>
-                            <constraint firstItem="H3x-rT-Mn9" firstAttribute="top" secondItem="Eri-qq-YSZ" secondAttribute="bottom" constant="100" id="NPs-ek-KFh"/>
+                            <constraint firstItem="H3x-rT-Mn9" firstAttribute="top" secondItem="Eri-qq-YSZ" secondAttribute="bottom" constant="20" id="NPs-ek-KFh"/>
                             <constraint firstItem="j17-8G-txe" firstAttribute="top" secondItem="c7m-Lp-0G9" secondAttribute="top" constant="8" id="Z6Y-qv-7eE"/>
                             <constraint firstItem="c7m-Lp-0G9" firstAttribute="trailing" secondItem="Eri-qq-YSZ" secondAttribute="trailing" constant="20" id="aLD-c9-6WJ"/>
                             <constraint firstItem="Eri-qq-YSZ" firstAttribute="leading" secondItem="c7m-Lp-0G9" secondAttribute="leading" constant="20" id="pO9-lC-Ani"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="addPlanBtn" destination="H3x-rT-Mn9" id="9XN-Ht-bES"/>
                         <outlet property="contentBgView" destination="e1S-uB-rya" id="5Am-FO-WVJ"/>
                         <outlet property="contentTextView" destination="BHp-Zj-rPn" id="jAu-qq-tXu"/>
                         <outlet property="dateBgView" destination="ppl-Oq-VnT" id="FCS-qc-wfY"/>
@@ -230,10 +234,10 @@
             </objects>
             <point key="canvasLocation" x="-503" y="-835"/>
         </scene>
-        <!--Add Plan View Controller-->
+        <!--View Controller-->
         <scene sceneID="wg5-8L-hq1">
             <objects>
-                <viewController id="zXn-Jt-3yI" customClass="AddPlanViewController" customModule="ToDoList_ios" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="zXn-Jt-3yI" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="MbG-dy-O6z">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -372,6 +376,9 @@
         <image name="gearshape" catalog="system" width="128" height="121"/>
         <image name="list.triangle" catalog="system" width="128" height="91"/>
         <image name="plus" catalog="system" width="128" height="113"/>
+        <namedColor name="dark">
+            <color red="0.31372549019607843" green="0.31372549019607843" blue="0.31372549019607843" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

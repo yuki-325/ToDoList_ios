@@ -13,7 +13,7 @@ struct C {
     static let toDoCellNibName = "ToDoCell"
     
     struct Colors {
-        static let dark = "Dark"
+        static let dark = "dark"
         static let gray = "gray"
     }
 }

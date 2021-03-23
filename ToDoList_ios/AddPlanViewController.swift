@@ -7,6 +7,7 @@
 
 import UIKit
 import UITextView_Placeholder
+import MaterialComponents.MaterialButtons
 
 class AddPlanViewController: UIViewController {
     
@@ -16,6 +17,7 @@ class AddPlanViewController: UIViewController {
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var contentTextView: UITextView!
     @IBOutlet weak var dateTextField: UITextField!
+    @IBOutlet weak var addPlanBtn: MDCFloatingButton!
     
     //dateTextField用Picker
     lazy var datePicker: UIDatePicker = {
@@ -55,10 +57,16 @@ class AddPlanViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //addPlanBtn
+        addPlanBtn.inkColor = UIColor.white // 押下した時の色を指定
+        addPlanBtn.inkStyle = .bounded // 押下した時の動きを指定
+        addPlanBtn.isEnabled = false // 初期状態ではボタンを押下できないように設定
+        
         //各テキスト入力フォームの背景ViewにcornerRadiusを設定
         titleBgView.layer.cornerRadius = titleBgView.frame.height / 3
-        contentBgView.layer.cornerRadius = contentBgView.frame.height / 5
-        dateBgView.layer.cornerRadius = dateBgView.frame.height / 2
+        contentBgView.layer.cornerRadius = contentBgView.frame.height / 8
+        dateBgView.layer.cornerRadius = dateBgView.frame.height / 3
         
         //titleTextFieldのplaceholderを設定
         titleTextField.attributedPlaceholder = NSAttributedString(string: "デートの題名"
@@ -72,11 +80,14 @@ class AddPlanViewController: UIViewController {
         dateTextField.attributedPlaceholder = NSAttributedString(string: "yyyy/mm/dd"
                                                                  , attributes: [NSAttributedString.Key.foregroundColor: UIColor.init(named: C.Colors.gray)!])
         
-        dateTextField.delegate = self //手入力防止用
+        dateTextField.delegate = self
+        titleTextField.delegate = self
         
         //dateTextFieldにdatepickerを設定
         dateTextField.inputView = datePicker // textFieldのinputViewにdatepickerを設定
         dateTextField.inputAccessoryView = toolbar //dateTextFieldにtoolbarを追加
+        
+        setUpNotificationForTextField()
     }
     
     //dateTextField toolbarのDoneボタンを押下した時の処理
@@ -84,12 +95,77 @@ class AddPlanViewController: UIViewController {
         dateTextField.text = dateFormatter.string(from: datePicker.date) // textFieldに選択した日付を代入
         self.view.endEditing(true) // キーボードを閉じる
     }
+    
+    @IBAction func addPlanBtnPressed(_ sender: Any) {
+        
+        dismiss(animated: true, completion: nil)
+    }
+    
 }
 
 //MARK: - UITextFieldDelegate
 extension AddPlanViewController: UITextFieldDelegate {
     //dateTextFieldのみ手入力不可に設定
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        return false
+        if textField == dateTextField {
+            return false
+        }
+        
+        return true
+    }
+    
+    //titleTextFieldに文字が入力されていなければaddPlanBtnを無効にする
+    func textFieldDidChangeSelection(_ textField: UITextField) {
+        let titleIsEmpty = titleTextField.text?.isEmpty ?? true
+        
+        if !titleIsEmpty {
+            addPlanBtn.isEnabled = true
+        } else {
+            addPlanBtn.isEnabled = false
+        }
+    }
+    
+    //キーボードのEnterを押下するとキーボードが閉じる
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+}
+
+//MARK: - キーボード系の処理
+extension AddPlanViewController {
+    //キーボード・テキストフィールド以外のところをタッチするとキーボードを閉じる
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
+    
+    func setUpNotificationForTextField() {
+        let notificationCenter = NotificationCenter.default
+        //キーボードが出る時に呼ばれる
+        notificationCenter.addObserver(self, selector: #selector(self.keyboardWillShow(_ :)),
+                                       name:UIResponder.keyboardWillShowNotification, object: nil)
+        //キーボードが隠れる時に呼ばれる
+        notificationCenter.addObserver(self, selector: #selector(self.keyboardWillHide(_ :)),
+                                       name:UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    //キーボードが出てきた時の処理
+    @objc func keyboardWillShow(_ notification: Notification) {
+        let keyboardFrame = (notification.userInfo![UIResponder.keyboardFrameEndUserInfoKey] as AnyObject).cgRectValue
+        guard let keyboardMinY = keyboardFrame?.minY else { return }
+        let registerBtnMaxY = addPlanBtn.frame.maxY
+        let distance = registerBtnMaxY - keyboardMinY + 60
+        let transform = CGAffineTransform(translationX: 0, y: -distance)
+        
+        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: [], animations: {
+            self.view.transform = transform
+        })
+    }
+    
+    //キーボードが隠れた時の処理
+    @objc func keyboardWillHide(_ notification: Notification) {
+        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: [], animations: {
+            self.view.transform = .identity
+        })
     }
 }
