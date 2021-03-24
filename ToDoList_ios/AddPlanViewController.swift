@@ -53,8 +53,6 @@ class AddPlanViewController: UIViewController {
         return toolbar
     }()
     
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -87,7 +85,7 @@ class AddPlanViewController: UIViewController {
         dateTextField.inputView = datePicker // textFieldのinputViewにdatepickerを設定
         dateTextField.inputAccessoryView = toolbar //dateTextFieldにtoolbarを追加
         
-        setUpNotificationForTextField()
+        setUpNotificationForTextField() //キーボード系処理実行
     }
     
     //dateTextField toolbarのDoneボタンを押下した時の処理
@@ -132,7 +130,7 @@ extension AddPlanViewController: UITextFieldDelegate {
     }
 }
 
-//MARK: - キーボード系の処理
+//MARK: - キーボード系の処理 キーボードが出てきた時viewを移動させる
 extension AddPlanViewController {
     //キーボード・テキストフィールド以外のところをタッチするとキーボードを閉じる
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {

@@ -119,17 +119,6 @@
                                     <action selector="addPlanBtnPressed:" destination="Jh5-rD-Jwp" eventType="touchUpInside" id="ctJ-MP-I4O"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TVa-dA-YlS">
-                                <rect key="frame" x="20" y="21" width="30" height="28.666666666666671"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="8Jm-72-SDy"/>
-                                    <constraint firstAttribute="width" constant="30" id="mVf-ne-ef5"/>
-                                </constraints>
-                                <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <state key="normal" backgroundImage="arrow.left.circle" catalog="system">
-                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large"/>
-                                </state>
-                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add デート" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j17-8G-txe">
                                 <rect key="frame" x="120.33333333333333" y="8" width="149.66666666666669" height="53"/>
                                 <constraints>
@@ -209,11 +198,9 @@
                         <viewLayoutGuide key="safeArea" id="c7m-Lp-0G9"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="TVa-dA-YlS" firstAttribute="leading" secondItem="c7m-Lp-0G9" secondAttribute="leading" constant="20" id="2rh-Ib-Qe9"/>
                             <constraint firstItem="Eri-qq-YSZ" firstAttribute="top" secondItem="j17-8G-txe" secondAttribute="bottom" constant="100" id="3qQ-w9-o0M"/>
                             <constraint firstItem="H3x-rT-Mn9" firstAttribute="centerX" secondItem="kNF-Ie-ATx" secondAttribute="centerX" id="76T-fy-pzk"/>
                             <constraint firstItem="j17-8G-txe" firstAttribute="centerX" secondItem="kNF-Ie-ATx" secondAttribute="centerX" id="B3U-gg-s7A"/>
-                            <constraint firstItem="TVa-dA-YlS" firstAttribute="top" secondItem="c7m-Lp-0G9" secondAttribute="top" constant="20" id="JB9-YV-KAW"/>
                             <constraint firstItem="H3x-rT-Mn9" firstAttribute="top" secondItem="Eri-qq-YSZ" secondAttribute="bottom" constant="20" id="NPs-ek-KFh"/>
                             <constraint firstItem="j17-8G-txe" firstAttribute="top" secondItem="c7m-Lp-0G9" secondAttribute="top" constant="8" id="Z6Y-qv-7eE"/>
                             <constraint firstItem="c7m-Lp-0G9" firstAttribute="trailing" secondItem="Eri-qq-YSZ" secondAttribute="trailing" constant="20" id="aLD-c9-6WJ"/>
@@ -377,7 +364,7 @@
         <image name="list.triangle" catalog="system" width="128" height="91"/>
         <image name="plus" catalog="system" width="128" height="113"/>
         <namedColor name="dark">
-            <color red="0.31372549019607843" green="0.31372549019607843" blue="0.31372549019607843" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.31400001049041748" green="0.31400001049041748" blue="0.31400001049041748" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
