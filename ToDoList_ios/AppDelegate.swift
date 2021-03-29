@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -13,7 +14,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        // Realmマイグレーションバージョン
+        // レコードフォーマットを変更する場合、このバージョンも上げていく。
+        let migSchemaVersion: UInt64 = 3
+
+        // マイグレーション設定
+        let config = Realm.Configuration(
+            schemaVersion: migSchemaVersion,
+            migrationBlock: { migration, oldSchemaVersion in
+                if (oldSchemaVersion < migSchemaVersion) {
+        }})
+        Realm.Configuration.defaultConfiguration = config
+        
+        print(Realm.Configuration.defaultConfiguration.fileURL!)
+        
         return true
     }
 

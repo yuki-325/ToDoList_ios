@@ -8,6 +8,7 @@
 import UIKit
 import UITextView_Placeholder
 import MaterialComponents.MaterialButtons
+import RealmSwift
 
 class AddPlanViewController: UIViewController {
     
@@ -55,7 +56,7 @@ class AddPlanViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+    
         //addPlanBtn
         addPlanBtn.inkColor = UIColor.white // 押下した時の色を指定
         addPlanBtn.inkStyle = .bounded // 押下した時の動きを指定
@@ -95,6 +96,18 @@ class AddPlanViewController: UIViewController {
     }
     
     @IBAction func addPlanBtnPressed(_ sender: Any) {
+        let realm = try! Realm()
+        let newPlan = Plan()
+        newPlan.title = titleTextField.text ?? ""
+        newPlan.content = contentTextView.text
+        newPlan.date = dateTextField.text ?? ""
+    
+        //DBにnewPlanを追加
+        try! realm.write {
+            realm.add(newPlan)
+        }
+        
+        
         
         dismiss(animated: true, completion: nil)
     }
