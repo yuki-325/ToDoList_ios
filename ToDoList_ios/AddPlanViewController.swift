@@ -19,7 +19,7 @@ class AddPlanViewController: UIViewController {
     @IBOutlet weak var contentTextView: UITextView!
     @IBOutlet weak var dateTextField: UITextField!
     @IBOutlet weak var addPlanBtn: MDCFloatingButton!
-    
+    let realm = try! Realm() //realm
     //dateTextField用Picker
     lazy var datePicker: UIDatePicker = {
         let datePicker = UIDatePicker()
@@ -53,6 +53,8 @@ class AddPlanViewController: UIViewController {
         //toolbar.barStyle = .black
         return toolbar
     }()
+    
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -96,22 +98,25 @@ class AddPlanViewController: UIViewController {
     }
     
     @IBAction func addPlanBtnPressed(_ sender: Any) {
-        let realm = try! Realm()
+        //newPlanを作成
         let newPlan = Plan()
         newPlan.title = titleTextField.text ?? ""
         newPlan.content = contentTextView.text
-        newPlan.date = dateTextField.text ?? ""
-    
+        if dateTextField.text != "未定" && dateTextField.text != "" {
+            //TODO: - 未定も入れられるように後日対応
+            newPlan.date = datePicker.date //datePickerの値を直接保存(要検討：時間に現在時間が保存されてしまうため)
+                //DateUtils.dateFromString(string: dateTextField.text!, format: "yyyy/MM/dd")
+        }
+
         //DBにnewPlanを追加
         try! realm.write {
             realm.add(newPlan)
         }
         
-        
-        
-        dismiss(animated: true, completion: nil)
+        //Home画面に遷移
+        let homeView = storyboard?.instantiateViewController(identifier: "Home") as! HomeViewController
+        self.present(homeView, animated: true, completion: nil)
     }
-    
 }
 
 //MARK: - UITextFieldDelegate
@@ -128,7 +133,6 @@ extension AddPlanViewController: UITextFieldDelegate {
     //titleTextFieldに文字が入力されていなければaddPlanBtnを無効にする
     func textFieldDidChangeSelection(_ textField: UITextField) {
         let titleIsEmpty = titleTextField.text?.isEmpty ?? true
-        
         if !titleIsEmpty {
             addPlanBtn.isEnabled = true
         } else {

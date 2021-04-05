@@ -12,7 +12,7 @@ class Plan: Object {
     @objc dynamic var id: String = NSUUID().uuidString
     @objc dynamic var title: String = ""
     @objc dynamic var content: String = ""
-    @objc dynamic var date: String = ""
+    @objc dynamic var date: Date = Date()
     @objc dynamic var createdAt: Date = Date()
     
     override static func primaryKey() -> String? {
