@@ -1,25 +1,28 @@
 //
-//  AddPlanViewController.swift
+//  EditPlanViewController.swift
 //  ToDoList_ios
 //
-//  Created by 中野勇貴 on 2021/03/09.
+//  Created by 中野勇貴 on 2021/04/05.
 //
 
 import UIKit
-import UITextView_Placeholder
 import MaterialComponents.MaterialButtons
 import RealmSwift
 
-class AddPlanViewController: UIViewController {
-    
-    @IBOutlet weak var titleBgView: UIView!
-    @IBOutlet weak var contentBgView: UIView!
-    @IBOutlet weak var dateBgView: UIView!
+
+class EditPlanViewController: UIViewController {
     @IBOutlet weak var titleTextField: UITextField!
+    @IBOutlet weak var titleBgView: UIView!
     @IBOutlet weak var contentTextView: UITextView!
+    @IBOutlet weak var contentBgView: UIView!
     @IBOutlet weak var dateTextField: UITextField!
-    @IBOutlet weak var addPlanBtn: MDCFloatingButton!
-    let realm = try! Realm() //realm
+    @IBOutlet weak var dateBgView: UIView!
+    @IBOutlet weak var doneBtn: MDCFloatingButton!
+    @IBOutlet weak var deleteBtn: MDCFloatingButton!
+    
+    // 受け取る値用の変数
+    var plan: Plan?
+    
     //dateTextField用Picker
     lazy var datePicker: UIDatePicker = {
         let datePicker = UIDatePicker()
@@ -54,41 +57,36 @@ class AddPlanViewController: UIViewController {
         return toolbar
     }()
     
-
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-    
-        //addPlanBtn
-        addPlanBtn.inkColor = UIColor.white // 押下した時の色を指定
-        addPlanBtn.inkStyle = .bounded // 押下した時の動きを指定
-        addPlanBtn.isEnabled = false // 初期状態ではボタンを押下できないように設定
+        //button
+        doneBtn.inkColor = UIColor.blue // 押下した時の色を指定
+        doneBtn.inkStyle = .bounded // 押下した時の動きを指定
+        deleteBtn.inkColor = UIColor.red
+        deleteBtn.inkStyle = .bounded
         
         //各テキスト入力フォームの背景ViewにcornerRadiusを設定
         titleBgView.layer.cornerRadius = titleBgView.frame.height / 3
         contentBgView.layer.cornerRadius = contentBgView.frame.height / 8
         dateBgView.layer.cornerRadius = dateBgView.frame.height / 3
         
-        //titleTextFieldのplaceholderを設定
-        titleTextField.attributedPlaceholder = NSAttributedString(string: "デートの題名"
-                                                                  , attributes: [NSAttributedString.Key.foregroundColor: UIColor.init(named: C.Colors.gray)!])
-        
-        //contentTextViewのplaceholderを設定
-        contentTextView.placeholder = "行く場所・やることなど"
-        contentTextView.placeholderColor = UIColor.init(named: C.Colors.gray)
-        
-        //dateTextFieldのplaceholderを設定
-        dateTextField.attributedPlaceholder = NSAttributedString(string: "yyyy/mm/dd"
-                                                                 , attributes: [NSAttributedString.Key.foregroundColor: UIColor.init(named: C.Colors.gray)!])
-        
-        dateTextField.delegate = self
-        titleTextField.delegate = self
-        
         //dateTextFieldにdatepickerを設定
         dateTextField.inputView = datePicker // textFieldのinputViewにdatepickerを設定
         dateTextField.inputAccessoryView = toolbar //dateTextFieldにtoolbarを追加
+        dateTextField.delegate = self
+        titleTextField.delegate = self
+        
+        // Home画面から受け取った値を各テキストフィールド・テキストビューに反映
+        if let _plan = plan {
+            titleTextField.text = _plan.title
+            contentTextView.text = _plan.content
+            dateTextField.text = DateUtils.stringFromDate(date: _plan.date, format: "yyyy/MM/dd")
+        } else {
+            print("データの取得に失敗しました")
+        }
         
         setUpNotificationForTextField() //キーボード系処理実行
+        
     }
     
     //dateTextField toolbarのDoneボタンを押下した時の処理
@@ -97,30 +95,16 @@ class AddPlanViewController: UIViewController {
         self.view.endEditing(true) // キーボードを閉じる
     }
     
-    @IBAction func addPlanBtnPressed(_ sender: Any) {
-        //newPlanを作成
-        let newPlan = Plan()
-        newPlan.title = titleTextField.text ?? ""
-        newPlan.content = contentTextView.text
-        if dateTextField.text != "未定" && dateTextField.text != "" {
-            //TODO: - 未定も入れられるように後日対応
-            newPlan.date = datePicker.date //datePickerの値を直接保存(要検討：時間に現在時間が保存されてしまうため)
-                //DateUtils.dateFromString(string: dateTextField.text!, format: "yyyy/MM/dd")
-        }
-
-        //DBにnewPlanを追加
-        try! realm.write {
-            realm.add(newPlan)
-        }
-        
-        //Home画面に遷移
-        let homeView = storyboard?.instantiateViewController(identifier: C.homeViewId) as! HomeViewController
-        self.present(homeView, animated: true, completion: nil)
+    @IBAction func doneBtnPressed(_ sender: Any) {
+        // 更新処理
     }
+    @IBAction func deleteBtnPressed(_ sender: Any) {
+        //削除処理
+    }
+    
 }
 
-//MARK: - UITextFieldDelegate
-extension AddPlanViewController: UITextFieldDelegate {
+extension EditPlanViewController: UITextFieldDelegate {
     //dateTextFieldのみ手入力不可に設定
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         if textField == dateTextField {
@@ -134,9 +118,9 @@ extension AddPlanViewController: UITextFieldDelegate {
     func textFieldDidChangeSelection(_ textField: UITextField) {
         let titleIsEmpty = titleTextField.text?.isEmpty ?? true
         if !titleIsEmpty {
-            addPlanBtn.isEnabled = true
+            doneBtn.isEnabled = true
         } else {
-            addPlanBtn.isEnabled = false
+            doneBtn.isEnabled = false
         }
     }
     
@@ -148,7 +132,7 @@ extension AddPlanViewController: UITextFieldDelegate {
 }
 
 //MARK: - キーボード系の処理 キーボードが出てきた時viewを移動させる
-extension AddPlanViewController {
+extension EditPlanViewController {
     //キーボード・テキストフィールド以外のところをタッチするとキーボードを閉じる
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
@@ -168,7 +152,7 @@ extension AddPlanViewController {
     @objc func keyboardWillShow(_ notification: Notification) {
         let keyboardFrame = (notification.userInfo![UIResponder.keyboardFrameEndUserInfoKey] as AnyObject).cgRectValue
         guard let keyboardMinY = keyboardFrame?.minY else { return }
-        let btnMaxY = addPlanBtn.frame.maxY
+        let btnMaxY = doneBtn.frame.maxY
         let distance = btnMaxY - keyboardMinY + 60
         let transform = CGAffineTransform(translationX: 0, y: -distance)
         
@@ -184,3 +168,4 @@ extension AddPlanViewController {
         })
     }
 }
+

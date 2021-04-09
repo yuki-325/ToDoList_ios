@@ -5,7 +5,7 @@
 //  Created by 中野勇貴 on 2021/03/31.
 //
 
-import Foundation
+import UIKit
 
 class DateUtils {
     //String→Dateに変換

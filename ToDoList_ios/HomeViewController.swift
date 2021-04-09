@@ -54,13 +54,16 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: C.toDoCellIdentifier, for: indexPath) as! ToDoCell
-        cell.whatLabel.text = plans[indexPath.row].title
-        cell.whyLabel.text = plans[indexPath.row].content
-        cell.whenLabel.text = DateUtils.stringFromDate(date: plans[indexPath.row].date as! Date, format: "yyyy/MM/dd")
+        cell.titleLabel.text = plans[indexPath.row].title
+        cell.contentLabel.text = plans[indexPath.row].content
+        cell.dateLabel.text = DateUtils.stringFromDate(date: plans[indexPath.row].date , format: "yyyy/MM/dd")
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        let editPlanView = storyboard?.instantiateViewController(identifier: C.editPlanViewId) as! EditPlanViewController
+        editPlanView.plan = plans[indexPath.row]
+        self.present(editPlanView, animated: true, completion: nil)
     }
 }

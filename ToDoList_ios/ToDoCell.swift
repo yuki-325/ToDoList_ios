@@ -9,9 +9,9 @@ import UIKit
 
 class ToDoCell: UITableViewCell {
 
-    @IBOutlet weak var whatLabel: UILabel!
-    @IBOutlet weak var whyLabel: UILabel!
-    @IBOutlet weak var whenLabel: UILabel!
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var contentLabel: UILabel!
+    @IBOutlet weak var dateLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()

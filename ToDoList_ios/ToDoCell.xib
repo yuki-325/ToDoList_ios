@@ -60,16 +60,16 @@
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <color key="backgroundColor" name="dark"/>
             <connections>
-                <outlet property="whatLabel" destination="4Fx-sM-vpK" id="uTV-Ec-tQZ"/>
-                <outlet property="whenLabel" destination="9ok-3K-7GO" id="wiP-gO-nHl"/>
-                <outlet property="whyLabel" destination="Sjc-8r-FnI" id="Th9-my-sjF"/>
+                <outlet property="contentLabel" destination="Sjc-8r-FnI" id="Th9-my-sjF"/>
+                <outlet property="dateLabel" destination="9ok-3K-7GO" id="wiP-gO-nHl"/>
+                <outlet property="titleLabel" destination="4Fx-sM-vpK" id="uTV-Ec-tQZ"/>
             </connections>
             <point key="canvasLocation" x="-144" y="-48"/>
         </tableViewCell>
     </objects>
     <resources>
         <namedColor name="dark">
-            <color red="0.25900000333786011" green="0.25900000333786011" blue="0.25900000333786011" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.31400001049041748" green="0.31400001049041748" blue="0.31400001049041748" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>

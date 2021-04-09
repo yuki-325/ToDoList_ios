@@ -11,7 +11,9 @@ import Foundation
 struct C {
     static let toDoCellIdentifier = "toDoCell"
     static let toDoCellNibName = "ToDoCell"
-    
+    static let homeViewId = "Home"
+    static let addPlanViewId = "AddPlan"
+    static let editPlanViewId = "EditPlan"
     struct Colors {
         static let dark = "dark"
         static let gray = "gray"
