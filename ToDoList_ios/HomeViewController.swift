@@ -22,25 +22,12 @@ class HomeViewController: UIViewController {
         toDoTableView.register(UINib(nibName: C.toDoCellNibName, bundle: nil), forCellReuseIdentifier: C.toDoCellIdentifier)
         floatActionBtn.inkColor = UIColor(named: C.Colors.dark)
         floatActionBtn.inkStyle = .bounded
-        loadData()
+        loadTableView()
     }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-    }
-    
-    func loadData() {
-        do {
-            let realm = try Realm()
-            let results = realm.objects(Plan.self).sorted(byKeyPath: "date", ascending: true)
-            
-            for result in results {
-                plans.append(result)
-            }
-        } catch let error {
-            print(error.localizedDescription)
-        }
+
+    //DBからデータを読み込んでTableViewに反映
+    func loadTableView() {
+        plans = RealmUtils.loadData()
         DispatchQueue.main.async {
             self.toDoTableView.reloadData() //tableViewをリロード
         }

@@ -86,7 +86,6 @@ class EditPlanViewController: UIViewController {
         }
         
         setUpNotificationForTextField() //キーボード系処理実行
-        
     }
     
     //dateTextField toolbarのDoneボタンを押下した時の処理
@@ -95,11 +94,31 @@ class EditPlanViewController: UIViewController {
         self.view.endEditing(true) // キーボードを閉じる
     }
     
+    
     @IBAction func doneBtnPressed(_ sender: Any) {
         // 更新処理
+        if let _plan = plan {
+            var date = Date()
+            if dateTextField.text != "未定" && dateTextField.text != "" { //日付が未定だった時の処理 後日対応
+                date = DateUtils.dateFromString(string: dateTextField.text!, format: "yyyy/MM/dd")
+            }
+            RealmUtils.updateData(planId: _plan.id, title: titleTextField.text ?? "", content: contentTextView.text, date: date)
+        }
+        
+        //Home画面に遷移
+        let homeView = storyboard?.instantiateViewController(identifier: C.homeViewId) as! HomeViewController
+        self.present(homeView, animated: true, completion: nil)
     }
+    
     @IBAction func deleteBtnPressed(_ sender: Any) {
         //削除処理
+        if let _plan = plan {
+            RealmUtils.daleteData(planId: _plan.id)
+        }
+        
+        //Home画面に遷移
+        let homeView = storyboard?.instantiateViewController(identifier: C.homeViewId) as! HomeViewController
+        self.present(homeView, animated: true, completion: nil)
     }
     
 }
@@ -114,10 +133,12 @@ extension EditPlanViewController: UITextFieldDelegate {
         return true
     }
     
-    //titleTextFieldに文字が入力されていなければaddPlanBtnを無効にする
+    //titleTextField・dateTextFieldに文字が入力されていなければaddPlanBtnを無効にする
     func textFieldDidChangeSelection(_ textField: UITextField) {
         let titleIsEmpty = titleTextField.text?.isEmpty ?? true
-        if !titleIsEmpty {
+        let dateIsEmpty = dateTextField.text?.isEmpty ?? true
+        
+        if !titleIsEmpty && !dateIsEmpty{
             doneBtn.isEnabled = true
         } else {
             doneBtn.isEnabled = false

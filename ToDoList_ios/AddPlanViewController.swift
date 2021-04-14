@@ -89,6 +89,7 @@ class AddPlanViewController: UIViewController {
         dateTextField.inputAccessoryView = toolbar //dateTextFieldにtoolbarを追加
         
         setUpNotificationForTextField() //キーボード系処理実行
+        
     }
     
     //dateTextField toolbarのDoneボタンを押下した時の処理
@@ -104,14 +105,11 @@ class AddPlanViewController: UIViewController {
         newPlan.content = contentTextView.text
         if dateTextField.text != "未定" && dateTextField.text != "" {
             //TODO: - 未定も入れられるように後日対応
-            newPlan.date = datePicker.date //datePickerの値を直接保存(要検討：時間に現在時間が保存されてしまうため)
-                //DateUtils.dateFromString(string: dateTextField.text!, format: "yyyy/MM/dd")
+            newPlan.date = DateUtils.dateFromString(string: dateTextField.text!, format: "yyyy/MM/dd")
         }
-
-        //DBにnewPlanを追加
-        try! realm.write {
-            realm.add(newPlan)
-        }
+        
+        //DBにデータを保存
+        RealmUtils.saveData(with: newPlan)
         
         //Home画面に遷移
         let homeView = storyboard?.instantiateViewController(identifier: C.homeViewId) as! HomeViewController
@@ -130,10 +128,11 @@ extension AddPlanViewController: UITextFieldDelegate {
         return true
     }
     
-    //titleTextFieldに文字が入力されていなければaddPlanBtnを無効にする
+    //titleTextField・dateTextFieldに文字が入力されていなければaddPlanBtnを無効にする
     func textFieldDidChangeSelection(_ textField: UITextField) {
         let titleIsEmpty = titleTextField.text?.isEmpty ?? true
-        if !titleIsEmpty {
+        let dateIsEmpty = dateTextField.text?.isEmpty ?? true
+        if !titleIsEmpty && !dateIsEmpty{
             addPlanBtn.isEnabled = true
         } else {
             addPlanBtn.isEnabled = false
